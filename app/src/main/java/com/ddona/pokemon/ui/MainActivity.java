@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ddona.pokemon.R;
+import com.ddona.pokemon.db.PokemonDatabase;
 import com.ddona.pokemon.model.PokemonResponse;
 import com.ddona.pokemon.network.PokemonModule;
 

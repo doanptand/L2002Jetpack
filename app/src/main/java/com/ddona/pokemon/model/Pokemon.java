@@ -1,11 +1,22 @@
 package com.ddona.pokemon.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "favorite")
 public class Pokemon {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "name")
     private String name;
 
     private String url;
+//
+//    @Ignore
+//    private String food;
 
     public Pokemon(String name, String url) {
         this.name = name;
