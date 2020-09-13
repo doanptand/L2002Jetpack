@@ -13,10 +13,10 @@ public abstract class PokemonDatabase extends RoomDatabase {
     public abstract PokemonDao getPokomonDao();
 
 
-    public static RoomDatabase getPokemonDatabase(Application application) {
+    public static PokemonDatabase getPokemonDatabase(Application application) {
         return Room.databaseBuilder(
                 application.getApplicationContext(),
-                RoomDatabase.class, "pokemon")
+                PokemonDatabase.class, "pokemon")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()//FIXME this is only for test, remove on production
                 .build();

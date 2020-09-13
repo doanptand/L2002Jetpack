@@ -6,8 +6,6 @@
         <item name="colorPrimary">@color/doanDepTrai</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="textAllCaps">true</item>
-        <item name="android:textSize">120dp</item>
     </style>
 
 </resources>
