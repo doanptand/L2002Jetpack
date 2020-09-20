@@ -23,13 +23,18 @@ import com.ddona.pokemon.viewmodel.PokemonViewModelFactory;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private PokemonViewModel viewModel;
-    private Car car;
+    @Inject
+    Car car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testDI() {
-        car = new Car();
         car.drive();
     }
 
