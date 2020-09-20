@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.ddona.pokemon.R;
 import com.ddona.pokemon.db.PokemonDatabase;
 import com.ddona.pokemon.di_demo.Car;
+import com.ddona.pokemon.di_demo.StudentDAO;
 import com.ddona.pokemon.model.Pokemon;
 import com.ddona.pokemon.model.PokemonResponse;
 import com.ddona.pokemon.network.PokemonModule;
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Car car;
 
+    @Inject
+    StudentDAO studentDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void testDI() {
         car.drive();
+        studentDAO.insert();
     }
 
     private void testOnly() {
