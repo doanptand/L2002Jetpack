@@ -9,6 +9,9 @@ public class Car {
     Driver driver;
 
     @Inject
+    Wheel wheel;
+
+    @Inject
     //this is constructor injection... parameter will be inject by hilt
     public Car(Driver driver) {
         this.driver = driver;
@@ -16,6 +19,6 @@ public class Car {
 
     public void drive() {
         Log.d("doanpt", "Car is running now and drive by "
-                + driver.getName());
+                + driver.getName() + " wheel:" + wheel.printInfo());
     }
 }
