@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.ddona.pokemon.R;
 import com.ddona.pokemon.db.PokemonDatabase;
+import com.ddona.pokemon.di_demo.Car;
 import com.ddona.pokemon.model.Pokemon;
 import com.ddona.pokemon.model.PokemonResponse;
 import com.ddona.pokemon.network.PokemonModule;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private PokemonViewModel viewModel;
-
+    private Car car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //        testOnly();
+        testDI();
+    }
+
+    private void testDI() {
+        car = new Car();
+        car.drive();
     }
 
     private void testOnly() {

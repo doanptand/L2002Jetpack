@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
@@ -6,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.ddona.pokemon"
-        minSdkVersion 27
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
