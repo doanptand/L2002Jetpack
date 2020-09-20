@@ -6,12 +6,12 @@ import javax.inject.Inject;
 
 public class Car {
 
-    @Inject
     Driver driver;
 
     @Inject
-    public Car() {
-
+    //this is constructor injection... parameter will be inject by hilt
+    public Car(Driver driver) {
+        this.driver = driver;
     }
 
     public void drive() {
