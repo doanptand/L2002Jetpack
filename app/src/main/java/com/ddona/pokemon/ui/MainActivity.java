@@ -22,7 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import javax.inject.Inject;
-
+import com.ddona.pokemon.databinding.ActivityMainBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -30,26 +30,21 @@ public class MainActivity extends AppCompatActivity {
     //    private PokemonViewModel viewModel;
     @Inject
     Car car;
-
     @Inject
     StudentDAO studentDAO;
-    private ViewPager vpPokemon;
-    private TabLayout tabPokemon;
-    private NavigationView navPokemon;
-    private DrawerLayout drawer;
     private PokemonPagerAdapter adapter;
+
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        vpPokemon = findViewById(R.id.vp_pokemon);
-        tabPokemon = findViewById(R.id.tab_layout);
-        drawer = findViewById(R.id.drawer);
-        navPokemon = findViewById(R.id.nav_main);
-        adapter = new PokemonPagerAdapter(getSupportFragmentManager());
-        vpPokemon.setAdapter(adapter);
-        tabPokemon.setupWithViewPager(vpPokemon);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        adapter = new PokemonPagerAdapter(getSupportFragmentManager());
+        binding.vpPokemon.setAdapter(adapter);
+        binding.tabLayout.setupWithViewPager(binding.vpPokemon);
 
 
 //        viewModel = new ViewModelProvider(this).get(PokemonViewModel.class);
