@@ -17,9 +17,10 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
-        User user = new User("doanptand", "doanpt93cntt@gmail.com", "");
+        User user = new User("doanptand",
+                "doanpt93cntt@gmail.com",
+                "https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_13/ngoctrinhmuonsinhcon1_swej.jpg");
         binding.setUser(user);
-        binding.getUser().setUsername("Doanpt ");
 
     }
 }
