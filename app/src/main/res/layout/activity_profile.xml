@@ -2,34 +2,47 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="user"
             type="com.ddona.pokemon.model.User" />
+
+        <variable
+            name="callback"
+            type="com.ddona.pokemon.callback.OnProfileChangeListener" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.ProfileActivity">
+
         <ImageView
             android:id="@+id/imgAvatar"
             set_src="@{user.avatar}"
             android:layout_width="200dp"
             android:layout_height="200dp" />
+
         <TextView
             android:id="@+id/tvUsername"
-            android:text="@{user.username}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{user.username}" />
+
         <TextView
             android:id="@+id/tvEmail"
-            android:text="@{user.email}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{user.email}" />
+
         <Button
             android:id="@+id/btnChange"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="Change"
+            android:onClick="@{()->callback.onProfileChange()}" />
     </LinearLayout>
 </layout>
