@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,6 +43,14 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     @Override
     public int getItemCount() {
         return pokemons.size();
+    }
+
+    public void setData(List<Pokemon> data) {
+        PokemonDiffUtil diffUtil = new PokemonDiffUtil(this.pokemons, data);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtil);
+        this.pokemons.clear();
+        pokemons.addAll(data);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

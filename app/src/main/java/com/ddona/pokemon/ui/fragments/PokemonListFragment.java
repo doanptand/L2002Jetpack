@@ -50,10 +50,7 @@ public class PokemonListFragment extends Fragment {
         viewModel.getNetworkPokemons().observe(getViewLifecycleOwner(), new Observer<List<Pokemon>>() {
             @Override
             public void onChanged(List<Pokemon> data) {
-                Log.d("doanpt", "data changed with size is:" + pokemons.size());
-                pokemons.clear();
-                pokemons.addAll(data);
-                adapter.notifyDataSetChanged();
+                adapter.setData(data);
             }
         });
 

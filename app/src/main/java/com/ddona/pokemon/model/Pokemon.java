@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "favorite")
 public class Pokemon {
 
@@ -45,6 +47,21 @@ public class Pokemon {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pokemon pokemon = (Pokemon) o;
+        return id == pokemon.id &&
+                Objects.equals(name, pokemon.name) &&
+                Objects.equals(url, pokemon.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, url);
     }
 }
 
