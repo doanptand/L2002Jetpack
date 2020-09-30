@@ -30,7 +30,7 @@ android {
         enabled = true
     }
     dataBinding {
-        enabled = false
+        enabled = true
     }
 }
 
