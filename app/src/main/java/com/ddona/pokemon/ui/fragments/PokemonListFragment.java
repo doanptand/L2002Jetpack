@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ddona.pokemon.R;
 import com.ddona.pokemon.adapter.PokemonAdapter;
+import com.ddona.pokemon.adapter.PokemonListAdapter;
 import com.ddona.pokemon.databinding.FragmentPokemonBinding;
 import com.ddona.pokemon.model.Pokemon;
 import com.ddona.pokemon.viewmodel.PokemonViewModel;
@@ -29,7 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class PokemonListFragment extends Fragment {
     private List<Pokemon> pokemons;
-    private PokemonAdapter adapter;
+//    private PokemonAdapter adapter;
+    private PokemonListAdapter adapter;
     private PokemonViewModel viewModel;
     private FragmentPokemonBinding binding;
 
@@ -39,7 +41,7 @@ public class PokemonListFragment extends Fragment {
         binding = FragmentPokemonBinding.inflate(inflater, container, false);
 
         pokemons = new ArrayList<>();
-        adapter = new PokemonAdapter(pokemons, getContext());
+        adapter =new PokemonListAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
         binding.rvPokemon.setLayoutManager(layoutManager);
@@ -50,7 +52,10 @@ public class PokemonListFragment extends Fragment {
         viewModel.getNetworkPokemons().observe(getViewLifecycleOwner(), new Observer<List<Pokemon>>() {
             @Override
             public void onChanged(List<Pokemon> data) {
-                adapter.setData(data);
+                pokemons.clear();
+                pokemons.addAll(data);
+//                adapter.setData(data);
+                adapter.submitList(data);
             }
         });
 

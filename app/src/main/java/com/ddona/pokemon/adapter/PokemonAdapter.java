@@ -45,7 +45,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         return pokemons.size();
     }
 
-    public void setData(List<Pokemon> data) {
+    public void submitList(List<Pokemon> data) {
         PokemonDiffUtil diffUtil = new PokemonDiffUtil(this.pokemons, data);
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtil);
         this.pokemons.clear();
