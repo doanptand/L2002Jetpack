@@ -50,6 +50,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         public ViewHolder(ItemPokemonBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+            this.binding.executePendingBindings();
         }
 
         public void bind(Pokemon pokemon) {

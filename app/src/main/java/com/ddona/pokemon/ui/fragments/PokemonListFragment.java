@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ddona.pokemon.R;
 import com.ddona.pokemon.adapter.PokemonAdapter;
+import com.ddona.pokemon.databinding.FragmentPokemonBinding;
 import com.ddona.pokemon.model.Pokemon;
 import com.ddona.pokemon.viewmodel.PokemonViewModel;
 
@@ -27,22 +28,22 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class PokemonListFragment extends Fragment {
-    private RecyclerView rvPokemon;
     private List<Pokemon> pokemons;
     private PokemonAdapter adapter;
     private PokemonViewModel viewModel;
+    private FragmentPokemonBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pokemon, container, false);
-        rvPokemon = view.findViewById(R.id.rv_pokemon);
+        binding = FragmentPokemonBinding.inflate(inflater, container, false);
+
         pokemons = new ArrayList<>();
         adapter = new PokemonAdapter(pokemons, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
-        rvPokemon.setLayoutManager(layoutManager);
-        rvPokemon.setAdapter(adapter);
+        binding.rvPokemon.setLayoutManager(layoutManager);
+        binding.rvPokemon.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(requireActivity()).get(PokemonViewModel.class);
         viewModel.fetchPokemonFromNetWork();
@@ -57,7 +58,7 @@ public class PokemonListFragment extends Fragment {
         });
 
         setupSwipeItem();
-        return view;
+        return binding.getRoot();
     }
 
     private void setupSwipeItem() {
@@ -79,6 +80,6 @@ public class PokemonListFragment extends Fragment {
             }
         };
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        touchHelper.attachToRecyclerView(rvPokemon);
+        touchHelper.attachToRecyclerView(binding.rvPokemon);
     }
 }
