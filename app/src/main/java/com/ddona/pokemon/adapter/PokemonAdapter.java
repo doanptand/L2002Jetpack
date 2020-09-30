@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ddona.pokemon.R;
+import com.ddona.pokemon.databinding.ItemPokemonBinding;
 import com.ddona.pokemon.model.Pokemon;
 
 import java.util.List;
@@ -28,19 +29,14 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_pokemon,
-                parent, false);
-        return new ViewHolder(view);
+        ItemPokemonBinding binding =
+                ItemPokemonBinding.inflate(LayoutInflater.from(context), parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Pokemon pokemon = pokemons.get(position);
-        Glide.with(context)
-                .load(pokemon.getUrl())
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.imgIcon);
-        holder.tvName.setText(pokemon.getName());
+        holder.bind(pokemons.get(position));
     }
 
     @Override
@@ -49,12 +45,15 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgIcon;
-        TextView tvName;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imgIcon = itemView.findViewById(R.id.img_avatar);
-            tvName = itemView.findViewById(R.id.tv_name);
+        ItemPokemonBinding binding;
+
+        public ViewHolder(ItemPokemonBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(Pokemon pokemon) {
+            binding.setPokemon(pokemon);
         }
     }
 }
